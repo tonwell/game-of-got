@@ -1,0 +1,156 @@
+:root {
+  --themeColor: rgb(136, 29, 29);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+.appRoot__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-image: url(bg.jpg);
+  background-size: contain;
+}
+
+.characterCard {
+  max-height: 66vh;
+  max-width: 100%;
+  margin: 40px 15px 0;
+  background-color: rgba(255, 255, 255, 0.65);
+  flex-grow: 1;
+  border-radius: 10px;
+  position: relative;
+}
+
+.characterCard.--cardOut {
+  animation: cardOut 1s ease forwards;
+}
+
+.characterCard.--cardIn {
+  animation: cardIn 1s ease forwards;
+}
+
+.characterCard.--isLoading::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  top: 0;
+  border-radius: 10px;
+}
+
+.characterCard.--isLoading::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid var(--themeColor);
+  z-index: 1;
+  border-right-color: transparent;
+  animation: spin 0.5s linear infinite;
+  top: 50%;
+  left: 50%;
+}
+
+.characterCard-header__wrapper {
+  max-width: 100%;
+  margin: 10px;
+  background-color: var(--themeColor);
+  color: #fff;
+  padding: 5px 0;
+  font-size: 1.2rem;
+  text-align: center;
+  position: relative;
+}
+
+.characterCard-header__wrapper.--isDead::after {
+  content: "✝";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.characterCard-name {
+}
+
+.characterCard-body {
+  list-style: none;
+  margin-left: 30px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.seasonsAppearance {
+  position: absolute;
+  margin-bottom: 10px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.nextButton {
+  background-color: var(--themeColor);
+  border: none;
+  color: rgb(255, 255, 55);
+  font-size: 2rem;
+  padding: 6px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 250ms transform 100ms;
+}
+
+.nextButton:hover {
+  background-color: rgb(167, 45, 45);
+}
+
+.nextButton:active {
+  transform: scale(0.95);
+}
+
+@keyframes cardOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes cardIn {
+  0% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
