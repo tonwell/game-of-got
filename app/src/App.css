@@ -17,7 +17,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  background-image: url(bg.jpg);
+  background: #626262 url(bg.jpg) no-repeat center center;
   background-size: contain;
 }
 
