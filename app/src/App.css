@@ -17,8 +17,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  background: #626262 url(bg.jpg) no-repeat center center;
-  background-size: contain;
+  background: #626262 url(bg.jpg) no-repeat top center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .characterCard {

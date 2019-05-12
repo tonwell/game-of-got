@@ -4,18 +4,28 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 // eslint-disable-next-line no-undef
 if (workbox) {
   workbox.precaching.precacheAndRoute([]);
-  
+
   workbox.routing.registerRoute(
-      /\.(?:js|css|html)$/,
-      new workbox.strategies.StaleWhileRevalidate({
-          cacheName: "static-resources",
-      })
+    /\.(?:js|css|html)$/,
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: "static-resources",
+    })
   );
   workbox.routing.registerRoute(
     /\.(?:jpg|png|jpeg)$/,
     new workbox.strategies.CacheFirst({
-        cacheName: "images",
+      cacheName: "images",
     })
+  );
+  workbox.routing.registerRoute(
+    /\.(?:mp3|ogg)$/,
+    new workbox.strategies.CacheFirst({
+      cacheName: 'music',
+      plugins: [
+        new workbox.cacheableResponse.Plugin({ statuses: [200] }),
+        new workbox.rangeRequests.Plugin(),
+      ],
+    }),
   );
   workbox.routing.registerRoute(
     'https://www.anapioficeandfire.com/api/characters?page=2&pageSize=20',
